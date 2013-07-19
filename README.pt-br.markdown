@@ -10,6 +10,11 @@ Compatível com CakePHP 2.3
 
 Eu senti falta de uma interface web para gerenciar o controle de acesso e aproveitei para aprender a mexer com código no Cake e criar um controle com interface web. Mesmo que eu tenha encontrado os plugins Usermgmt e Admin, ainda assim resolvi criar um. Não é uma questão de reinventar a roda, mas eu queria ter um controle customizado, criar algo com código simples e que também possa ajudar outros iniciantes no Cake.
 
+## Sugestões e Críticas
+
+Este componente está em fase inicial e por isso gostaria de receber sugestões e/ou críticas para melhorá-lo.<br>
+ribafs @ gmail.com
+
 ## Requisitos
 
 O componente Access Control controla o acesso de usuários ao aplicativo. Ele controla para cada action de cada controller. Mas para isso nós precisamos preencher a tabela privileges através do controller de mesmo nome. Somente após cadastrar cada action de cada controller e seu respectivo usuário, somente então ele funcionará corretamente.
@@ -249,3 +254,8 @@ Lembre que para fazer logout pode chamar:
 http://localhost/seuapp/users/logout 
 
 Prontinho, temos nosso aplicativo com controle de acesso implementado via componente Auth.
+
+
+# Aplicativo de Exemplo
+
+O arquivo auth_acesso.zip contém um aplicativo com o Cake 2.3.7 e os componentes Auth e Acesso implementados para uma desmonstração rápida do funcionamento do componente Acesso.
