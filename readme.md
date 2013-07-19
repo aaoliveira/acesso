@@ -25,7 +25,7 @@ Instalação
 	 aqui junto com o componente para ajudar.
 	Sugestão: idealmente criar as tabelas do zero e depois gerar os CRUDs com o bake.
 
-- Copiar o componente Acesso em app/Controller/Component
+- Copiar o componente Acesso para app/Controller/Component
 
 - Habilitar o componente no início do AppController.php (apenas adicione, caso já tenha):
 	public $components = array('Acesso');
