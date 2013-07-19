@@ -27,17 +27,17 @@ Instalação
 
 - Copiar o componente Acesso para app/Controller/Component
 
-- Habilitar o componente no início do AppController.php (apenas adicione, caso já tenha):
+- Habilitar o componente no início do AppController.php (apenas adicione, caso já tenha):<br>
 	public $components = array('Acesso');
 
-- Importar para o banco do aplicativo o script da tabela privileges, groups e users, caso não existam 
+- Importar para o banco do aplicativo o script da tabela privileges, groups e users, caso não existam<br> 
 	(veja o script componente_acesso.sql)
 
-- Gerar o código para o CRUD previleges e groups e users, caso não existam, acessando o terminal e executando:
-cd /var/www/minhaaplicacao/app/Console
-./cake bake all
+- Gerar o código para o CRUD previleges e groups e users, caso não existam, acessando o terminal e executando:<br>
+cd /var/www/minhaaplicacao/app/Console<br>
+./cake bake all<br>
 
-Adicionar ao AppController
+Adicionar ao AppController<br>
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -65,11 +65,11 @@ Um detalhe importante:
 - Quando permitir que o grupo 1 tenha acesso a um action, somente ele terá acesso.
 Vale lembrar que alguns actions devem ficar disponíveis para acesso ao público, como é o caso do menus, login e logout.
 
-Privilégios
+Privilégios<br>
 Lembre que somente poderá testar corretamente os privilégios de todos os usuários após cadastrar todos os privilégios através do controller "privileges", já que o controle do componente é efetuado de acordo com a respectiva tabela "privileges".
 
-Importante:
-Altere o método isAuthorized() para que fique como abaixo (alterar a linha do if):
+Importante:<br>
+Altere o método isAuthorized() para que fique como abaixo (alterar a linha do if):<br>
 
 	public function isAuthorized($user) {
 	    return true;
