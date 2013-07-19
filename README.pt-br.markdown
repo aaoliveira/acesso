@@ -258,4 +258,4 @@ Prontinho, temos nosso aplicativo com controle de acesso implementado via compon
 
 # Aplicativo de Exemplo
 
-O arquivo auth_acesso.zip contém um aplicativo com o Cake 2.3.7 e os componentes Auth e Acesso implementados para uma desmonstração rápida do funcionamento do componente Acesso.
+O arquivo auth_acesso.zip [https://github.com/ribafs/acesso/blob/master/auth_acesso.zip] contém um aplicativo com o Cake 2.3.7 e os componentes Auth e Acesso implementados para uma desmonstração rápida do funcionamento do componente Acesso.
