@@ -6,11 +6,11 @@ Componente para controlar o acesso de usuários para aplicativos em CakePHP 2.3+
 
 Compatível com CakePHP 2.3
 
-# Introdução
+## Introdução
 
 Eu senti falta de uma interface web para gerenciar o controle de acesso e aproveitei para aprender a mexer com código no Cake e criar um controle com interface web. Mesmo que eu tenha encontrado os plugins Usermgmt e Admin, ainda assim resolvi criar um. Não é uma questão de reinventar a roda, mas eu queria ter um controle customizado, criar algo com código simples e que também possa ajudar outros iniciantes no Cake.
 
-# Requisitos
+## Requisitos
 
 O componente Access Control controla o acesso de usuários ao aplicativo. Ele controla para cada action de cada controller. Mas para isso nós precisamos preencher a tabela privileges através do controller de mesmo nome. Somente após cadastrar cada action de cada controller e seu respectivo usuário, somente então ele funcionará corretamente.
 
@@ -18,7 +18,7 @@ O componente Access Control controla o acesso de usuários ao aplicativo. Ele co
 - Também precisa que o aplicativo tenha as tabelas users e groups. Users deve ter um campo chamado "group_id", que o relaciona a groups. O que mostra que é um componente dependente de outras coisas.
 Sem estes requisitos o componente não irá funcionar.
 
-# Instalação
+## Instalação
 
 Download - https://github.com/ribafs/acesso/archive/master.zip 
 
@@ -67,17 +67,17 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 Obs.: os nomes admin, gerente e usuario são apenas sugestões.
 
-# Implementando o Component Auth
+## Implementando o Component Auth
 
 Caso ainda não tenha implementado o componente Auth no seu aplicativo, implemente agora.
 Se precisar de ajuda siga o tutorial oficial:
 http://book.cakephp.org/2.0/en/tutorials-and-examples/blog-auth-example/auth.html
 Ao final deste readme deixei uma versão resumida e adaptada para uso do Auth com o Acesso.
 
-# Cadastrando as Permissões
+## Cadastrando as Permissões
 
 Começe chamando o controller privileges:
-http://localhost/seuaplicativo/privileges/
+http://localhost/seuapp/privileges/
 
 E cadastrando todos os actions que deseja controlar e somente eles. 
 Deixe de fora os actions que deseja permitir acesso público. Aqui estou deixando somente o menus, login e logout com acesso público.
@@ -96,9 +96,10 @@ Adicione a entrada do componente Acesso ao AppController:
 Adicione o beforeFilter ao AppController, deixando de fora os actions que darão público:
 
 	public function beforeFilter() { 
-		$this->Auth->allow('menus'); // Liberado para o público 
+		parent::beforeFilter();
+		$this->Auth->allow('index'); // Liberado para o público 
 
-		if($this->action != 'menus'){ 
+		if($this->action != 'index'){ 
 
 			$controller=$this->params['controller']; 
 			$action=$this->params['action']; 
@@ -118,16 +119,16 @@ Altere o método isAuthorized em AppController para ficar assim:
 	    return true; 
 	} 
 
-# Testando
+## Testando
 
-http://localhost/seuaplicativo/
+http://localhost/seuapp/
 
 Faça login como admin e cadastre os usuários: gerente no grupo gerentes e usuario no usuarios.
 Então faça logout.
 Faça login como gerente ou usuario e experimente testar os privilégios cadastrados em privileges.
 
 
-# Copyright e Licença
+## Copyright e Licença
 
 Copyright 2013, Ribamar FS (http://ribafs.org/)
 
@@ -160,21 +161,18 @@ class AppController extends Controller {
         'Session', 
         'Auth' => array( 
 			'loginAction' => array('controller'=>'users','action'=>'login'),
-            'loginRedirect' => array('controller' => 'clientes', 'action' => 'index'), 
+            'loginRedirect' => array('controller' => 'posts', 'action' => 'index'), 
             'logoutRedirect' => array('controller' => 'users', 'action' => 'login'), 
 			'authorize' => array('Controller') // Added this line 
         ) 
     ); 
 
     public function beforeFilter() { 
-        $this->Auth->allow('menus','index'); // Estes terão acesso público 
+        $this->Auth->allow('index','view'); // Estes terão acesso público 
     } 
 
 	public function isAuthorized($user) { 
-		if (isset($user['group_id']){ 
-		    return true; 
-		} 
-		return false; 
+	    return true; 
 	} 
 } 
 
@@ -198,7 +196,7 @@ Criar a view Users/login.ctp:
 
 <div class="users form"> 
 <?php echo $this->Session->flash('auth'); ?> 
-<?php echo $this->Form->create('User'); ?> 
+<?php echo $this->Form->create(null, array('url' => '/posts/index')); ?> 
     <fieldset> 
         <legend><?php echo __('Please enter your username and password'); ?></legend> 
         <?php echo $this->Form->input('username'); 
@@ -208,10 +206,13 @@ Criar a view Users/login.ctp:
 <?php echo $this->Form->end(__('Login')); ?> 
 </div> 
 
-Início do model User.php: 
+No model User.php: 
 
+Após
 App::uses('AppModel', 'Model'); 
-App::uses('AuthComponent', 'Controller/Component'); 
+
+Adicione:
+App::uses('AuthComponent', 'Controller/Component');
 
 class User extends AppModel { 
 
@@ -230,21 +231,21 @@ Verá que será redirecionado para o login com a mensagem de que não tem autori
 
 Adicionar Usuário
 Agora precisamos permitir, por enquanto, que o público use a view "add" em AppController para adicionar um usuário admin. 
-$this->Auth->allow('menus','index','add'); 
+$this->Auth->allow('index','add'); 
  
 Acesse então 
-http://localhost/cakemodelo2/users/ 
+http://localhost/seuapp/users/ 
 
 E adicione um usuário "admin" no grupo "admins". 
 
 Desfaça então a alteração no AppController:
-$this->Auth->allow('menus'); // Deixando para o acesso público somente 'menus'.
+$this->Auth->allow('index'); // Deixando para o acesso público somente 'menus'.
 
 Faça o login como user "admin" em: 
-http://localhost/cakemodelo2/users/login 
+http://localhost/seuapp/users/login 
 
 Agora terá direito a qualquer operação como admin.
 Lembre que para fazer logout pode chamar:
-http://localhost/cakemodelo2/users/logout 
+http://localhost/seuapp/users/logout 
 
 Prontinho, temos nosso aplicativo com controle de acesso implementado via componente Auth.
