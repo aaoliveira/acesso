@@ -1,5 +1,10 @@
 Componente Acesso
 
+Testado em:
+CakePHP 2.3.5 até 2.3.8
+PHP 5.4.6
+Provavelmente funciona em PHP 5.3 ou superior e Cake 2.x.
+
 Este componente tem como objetivo controlar o acesso dos usuários a cada um dos actions.
 Ele não usa ACL, mas trabalha de forma parecida, pelo menos em relação aos resultados.
 
