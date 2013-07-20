@@ -263,3 +263,7 @@ Basta descompactar no diretório web, criar o banco e importar o script sql do r
 
 login - admin<br>
 senha - admin
+
+Para gerenciar as permissões abra o controller privileges.
+
+http://localhost/auth_acesso/privileges
