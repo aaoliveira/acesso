@@ -260,3 +260,6 @@ Prontinho, temos nosso aplicativo com controle de acesso implementado via compon
 
 O arquivo auth_acesso.zip [https://github.com/ribafs/acesso/blob/master/auth_acesso.zip] contém um aplicativo com o Cake 2.3.7 e os componentes Auth e Acesso implementados para uma desmonstração rápida do funcionamento do componente Acesso.
 Basta descompactar no diretório web, criar o banco e importar o script sql do raiz e testar. Sugestões e críticas serão bem vindas.
+
+login - admin<br>
+senha - admin
