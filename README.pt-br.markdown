@@ -102,9 +102,9 @@ Adicione o beforeFilter ao AppController, deixando de fora os actions que darão
 
 	public function beforeFilter() { 
 		parent::beforeFilter();
-		$this->Auth->allow('index'); // Liberado para o público 
+		$this->Auth->allow('menus'); // Liberado para o público 
 
-		if($this->action != 'index'){ 
+		if($this->action != 'menus'){ 
 
 			$controller=$this->params['controller']; 
 			$action=$this->params['action']; 
