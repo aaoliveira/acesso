@@ -147,7 +147,7 @@ Licenciado pela Licença MIT (http://opensource.org/licenses/mit-license.php)
 
 ## Implementando o componente Auth
 
-Este tutorial é um resumo do oficial, uma versão resumida, pois quem fará o principal trabalho de controle de acesso será o componente Acesso.
+Este tutorial é uma versão resumida do tutorial oficial, pois quem fará o principal trabalho de controle de acesso será o componente Acesso.
 
 Alerta: a tabela users não deve ter nenhum usuário cadastrado no início, deve estar vazia.
 Os usuários devem ser cadastrados após a implementação do Auth e através do controller users.
