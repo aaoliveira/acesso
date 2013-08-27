@@ -163,7 +163,7 @@ Ajustar AppController.php para isso:
 
 class AppController extends Controller { 
     public $components = array( 
-        'Session', 
+        'Session', 'Acesso',
         'Auth' => array( 
 			'loginAction' => array('controller'=>'users','action'=>'login'),
             'loginRedirect' => array('controller' => 'posts', 'action' => 'index'), 
