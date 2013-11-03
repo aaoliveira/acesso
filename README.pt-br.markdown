@@ -2,6 +2,11 @@
 
 Componente para controlar o acesso de usuários para aplicativos em CakePHP 2.3+ com uma interface web para gerenciamento do controle de permissões de usuários.
 
+## Plugin Admin
+Este componente deu origem ao plugin:
+http://github.com/ribafs/cakeadmin
+
+
 ## Compatibilidade
 
 Compatível com CakePHP 2.3
